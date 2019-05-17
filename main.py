@@ -2,6 +2,7 @@
 # Obligamos a que haya 4 corredores
 
 import turtle # Que tiene también su propio lienzo. Lo usaremos (tipo Screen)
+import random
 
 class Circuito():
     corredores = []
@@ -29,11 +30,23 @@ class Circuito():
             newTurtle.color(self.coloresT[i])
             
             self.corredores.append(newTurtle)
+            
+    def competir(self):
+        
+        hayGanador = False
+        while not hayGanador:
+            for tortuga in self.corredores:
+                avance = random.randint(1,6)
+                tortuga.forward(avance)
+                if tortuga.position()[0] >= self.__lineaLlegada:
+                    hayGanador=True
+                    print("La tortuga de color {} ha ganado".format(tortuga.color()[0]))
 
 # Ejecutamos algo en __main__ para ver cómo va
 
 if __name__ == "__main__":
     circuito=Circuito(640,480)
+    circuito.competir()
     
 
         
